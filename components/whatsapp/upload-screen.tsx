@@ -167,7 +167,17 @@ export function UploadScreen() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">How to export on WhatsApp</p>
+                <div className="flex items-center justify-between gap-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">How to export on WhatsApp</p>
+                  <a
+                    href="https://faq.whatsapp.com/1180414079177245/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs font-medium text-accent underline-offset-2 hover:underline"
+                  >
+                    Official guide
+                  </a>
+                </div>
                 <ol className="mt-2 space-y-2 text-sm text-muted-foreground">
                   <li className="rounded-lg border border-border/60 bg-muted/25 px-3 py-2">1. Open a chat, then tap the header menu.</li>
                   <li className="rounded-lg border border-border/60 bg-muted/25 px-3 py-2">2. Choose <span className="font-medium text-foreground">Export chat</span>.</li>
