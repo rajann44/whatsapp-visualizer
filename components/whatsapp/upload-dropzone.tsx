@@ -97,7 +97,7 @@ export function UploadDropzone({
       <div>
         <p className="text-xl font-semibold tracking-tight md:text-2xl">Drop your WhatsApp ZIP here</p>
         <p className="mt-2 text-sm text-muted-foreground md:text-base">
-          Or click to browse. Supports multiple `.txt` files in one archive.
+          Or click to browse. Your file is processed locally and never leaves this device.
         </p>
       </div>
       <input
