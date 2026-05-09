@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { WorkspaceProvider } from "@/components/whatsapp/workspace-provider";
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <WorkspaceProvider>{children}</WorkspaceProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
