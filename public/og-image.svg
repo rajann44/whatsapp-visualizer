@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">WhatsApp Visualizer Open Graph Image</title>
+  <desc id="desc">Brand banner with local-first analytics message.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3f8f7"/>
+      <stop offset="100%" stop-color="#dfeeea"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a6c66"/>
+      <stop offset="100%" stop-color="#16a08c"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g transform="translate(90 90)">
+    <rect x="0" y="0" width="1020" height="450" rx="34" fill="#ffffff" fill-opacity="0.94"/>
+    <rect x="52" y="60" width="120" height="120" rx="28" fill="url(#card)"/>
+    <path d="M79 98c0-11 9-20 20-20h24c11 0 20 9 20 20v20c0 11-9 20-20 20h-16l-16 14v-14h-2c-6 0-10-4-10-10V98z" fill="#fff" fill-opacity="0.95"/>
+    <rect x="101" y="103" width="8" height="20" rx="2" fill="#0a6c66"/>
+    <rect x="113" y="95" width="8" height="28" rx="2" fill="#0a6c66"/>
+    <rect x="125" y="107" width="8" height="16" rx="2" fill="#0a6c66"/>
+
+    <text x="200" y="112" fill="#0f172a" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="56" font-weight="700">
+      WhatsApp Visualizer
+    </text>
+    <text x="200" y="164" fill="#334155" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="28" font-weight="500">
+      Deterministic, local-first analytics for your chat exports
+    </text>
+
+    <g transform="translate(200 220)">
+      <rect x="0" y="0" width="760" height="230" rx="22" fill="#f8fbfa"/>
+      <rect x="32" y="44" width="10" height="120" rx="5" fill="#16a08c"/>
+      <rect x="52" y="86" width="10" height="78" rx="5" fill="#16a08c" fill-opacity="0.78"/>
+      <rect x="72" y="66" width="10" height="98" rx="5" fill="#16a08c" fill-opacity="0.88"/>
+      <rect x="92" y="104" width="10" height="60" rx="5" fill="#16a08c" fill-opacity="0.7"/>
+      <path d="M160 150 C230 90, 300 180, 380 120 C450 70, 520 145, 620 95" fill="none" stroke="#0a6c66" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="620" cy="95" r="8" fill="#0a6c66"/>
+      <text x="32" y="205" fill="#64748b" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="22">
+        Private by default. Your data stays on-device.
+      </text>
+    </g>
+  </g>
+</svg>

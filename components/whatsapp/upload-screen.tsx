@@ -1,0 +1,224 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { AlertCircle, CheckCircle2, Eye, ShieldCheck, SlidersHorizontal } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+
+import { UploadDropzone } from "@/components/whatsapp/upload-dropzone";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { buildSampleParseResult } from "@/lib/whatsapp/sample-data";
+import { toUserFriendlyUploadError } from "@/lib/whatsapp/upload-errors";
+import { parseWhatsAppZip } from "@/lib/whatsapp/parser";
+import { type UploadProgress } from "@/lib/whatsapp/types";
+import { useWorkspace } from "@/components/whatsapp/workspace-provider";
+
+export function UploadScreen() {
+  const router = useRouter();
+  const { setResult } = useWorkspace();
+  const [progress, setProgress] = useState<UploadProgress>({ state: "idle" });
+  const [loadingPercent, setLoadingPercent] = useState(0);
+  const timerRef = useRef<number | null>(null);
+  const loadingSteps = ["Unpacking ZIP", "Parsing messages", "Building insights workspace"];
+  const activeStepIndex = loadingPercent < 34 ? 0 : loadingPercent < 68 ? 1 : 2;
+
+  function clearTimer(): void {
+    if (timerRef.current !== null) {
+      window.clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  }
+
+  function delay(ms: number): Promise<void> {
+    return new Promise((resolve) => {
+      window.setTimeout(resolve, ms);
+    });
+  }
+
+  useEffect(() => {
+    return () => clearTimer();
+  }, []);
+
+  async function handleUpload(file: File): Promise<void> {
+    clearTimer();
+    setLoadingPercent(0);
+    setProgress({ state: "loading", message: "Preparing your workspace..." });
+    const startedAt = Date.now();
+
+    timerRef.current = window.setInterval(() => {
+      const elapsed = Date.now() - startedAt;
+      const next = Math.min((elapsed / 5000) * 100, 98);
+      setLoadingPercent(next);
+    }, 60);
+
+    try {
+      const parsed = await parseWhatsAppZip(file);
+      const elapsed = Date.now() - startedAt;
+      const remaining = Math.max(5000 - elapsed, 0);
+      if (remaining > 0) {
+        await delay(remaining);
+      }
+      clearTimer();
+      setLoadingPercent(100);
+      setResult(parsed);
+      setProgress({ state: "parsed", message: `Ready. Parsed ${parsed.parseStats.totalMessages} messages.` });
+      await delay(260);
+      router.push("/insights");
+    } catch (error) {
+      clearTimer();
+      const reason = toUserFriendlyUploadError(error);
+      setProgress({ state: "error", message: reason });
+      setLoadingPercent(0);
+    }
+  }
+
+  async function loadSampleWorkspace(): Promise<void> {
+    clearTimer();
+    setLoadingPercent(0);
+    setProgress({ state: "loading", message: "Loading sample workspace..." });
+    const startedAt = Date.now();
+
+    timerRef.current = window.setInterval(() => {
+      const elapsed = Date.now() - startedAt;
+      const next = Math.min((elapsed / 1200) * 100, 92);
+      setLoadingPercent(next);
+    }, 60);
+
+    await delay(1150);
+    clearTimer();
+    setLoadingPercent(100);
+    setResult(buildSampleParseResult());
+    setProgress({ state: "parsed", message: "Sample insights loaded." });
+    await delay(240);
+    router.push("/insights");
+  }
+
+  return (
+    <div className="space-y-6">
+      <section className="apple-shell section-reveal relative overflow-hidden rounded-[2rem] border border-border/60 px-6 py-10 text-center shadow-soft md:px-12 md:py-16" style={{ animationDelay: "30ms" }}>
+        <div className="hero-ambient-orb hero-ambient-orb-a" aria-hidden="true" />
+        <div className="hero-ambient-orb hero-ambient-orb-b" aria-hidden="true" />
+        <div className="hero-ambient-grid" aria-hidden="true" />
+        <div className="relative z-10">
+          <Badge variant="success" className="mx-auto mb-5 w-fit gap-1.5 px-3 py-1 text-[11px] uppercase tracking-[0.12em]">
+            <ShieldCheck className="h-3.5 w-3.5" />
+            Private on-device analysis
+          </Badge>
+          <h1 className="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">
+            Bring in your chat.
+            <br className="hidden md:block" />
+            Explore with clarity.
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
+            Your ZIP is processed locally on this device and then opened in a focused insights workspace.
+          </p>
+        </div>
+      </section>
+
+      <section className="section-reveal grid items-stretch gap-4 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)]" style={{ animationDelay: "95ms" }}>
+        <div className="space-y-4">
+          <UploadDropzone
+            isLoading={progress.state === "loading"}
+            onFileSelect={handleUpload}
+            onValidationError={(message) => setProgress({ state: "error", message })}
+            className={progress.state === "loading" ? undefined : "h-full"}
+          />
+
+          {progress.state === "loading" && (
+            <Card>
+              <CardContent className="space-y-4 py-5" aria-live="polite">
+                <div className="flex items-center justify-between gap-3 text-sm">
+                  <p className="font-medium text-foreground">{progress.message}</p>
+                  <span className="tabular-nums text-muted-foreground">{Math.round(loadingPercent)}%</span>
+                </div>
+                <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
+                  <div
+                    className="h-full rounded-full bg-accent transition-[width] duration-100"
+                    style={{ width: `${loadingPercent}%` }}
+                    role="progressbar"
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={Math.round(loadingPercent)}
+                    aria-label="Preparing insights workspace"
+                  />
+                </div>
+                <ul className="space-y-1.5 text-xs text-muted-foreground">
+                  {loadingSteps.map((step, index) => (
+                    <li key={step} className="flex items-center gap-2">
+                      <CheckCircle2 className={`h-3.5 w-3.5 ${index <= activeStepIndex ? "text-accent" : "text-muted-foreground/55"}`} />
+                      <span className={index <= activeStepIndex ? "text-foreground" : ""}>{step}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-xs text-muted-foreground">Preparing your insights workspace. This usually completes in a few seconds.</p>
+              </CardContent>
+            </Card>
+          )}
+
+          {progress.state === "error" && (
+            <Card className="subtle-enter border-warning/70">
+              <CardContent className="flex items-center gap-2 py-5 text-sm">
+                <AlertCircle className="h-4 w-4 text-warning" />
+                {progress.message ?? "Failed to parse archive."}
+              </CardContent>
+            </Card>
+          )}
+        </div>
+
+        <aside>
+          <Card className="h-full rounded-[1.4rem] border-border/60 bg-card/70">
+            <CardHeader className="space-y-1 pb-2">
+              <CardTitle className="text-base">Quick start</CardTitle>
+              <p className="text-sm text-muted-foreground">Everything you need before upload and analysis.</p>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">How to export on WhatsApp</p>
+                <ol className="mt-2 space-y-2 text-sm text-muted-foreground">
+                  <li className="rounded-lg border border-border/60 bg-muted/25 px-3 py-2">1. Open a chat, then tap the header menu.</li>
+                  <li className="rounded-lg border border-border/60 bg-muted/25 px-3 py-2">2. Choose <span className="font-medium text-foreground">Export chat</span>.</li>
+                  <li className="rounded-lg border border-border/60 bg-muted/25 px-3 py-2">3. Save the ZIP and drop it here.</li>
+                </ol>
+              </div>
+
+              <div className="rounded-xl border border-border/60 bg-muted/20 p-3">
+                <p className="text-sm font-medium text-foreground">Try the app before uploading</p>
+                <p className="mt-1 text-sm text-muted-foreground">Load an anonymized sample chat to explore charts, filters, and exports.</p>
+                <Button variant="secondary" className="mt-3 w-full" onClick={loadSampleWorkspace} disabled={progress.state === "loading"}>
+                  Explore sample workspace
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </aside>
+      </section>
+
+      <section className="section-reveal apple-shell rounded-[1.4rem] border border-border/60 bg-card/70 p-4 md:p-5" style={{ animationDelay: "130ms" }}>
+        <div className="grid gap-3 md:grid-cols-3">
+          <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
+              <ShieldCheck className="h-4 w-4 text-accent" />
+              Data minimization by default
+            </div>
+            <p className="text-sm text-muted-foreground">No account required and chat processing stays on-device during analysis.</p>
+          </div>
+          <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
+              <Eye className="h-4 w-4 text-accent" />
+              Transparent analytics
+            </div>
+            <p className="text-sm text-muted-foreground">Deterministic metrics with visible formulas and explainable chart outputs.</p>
+          </div>
+          <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
+              <SlidersHorizontal className="h-4 w-4 text-accent" />
+              User control and rights
+            </div>
+            <p className="text-sm text-muted-foreground">Adjust filters, export summaries, and delete session data at any time.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
