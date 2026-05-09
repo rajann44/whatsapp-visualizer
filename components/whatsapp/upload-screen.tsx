@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { AlertCircle, CheckCircle2, Eye, ShieldCheck, SlidersHorizontal } from "lucide-react";
+import { AlertCircle, Eye, ShieldCheck, SlidersHorizontal } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { UploadDropzone } from "@/components/whatsapp/upload-dropzone";
@@ -19,9 +19,14 @@ export function UploadScreen() {
   const { setResult } = useWorkspace();
   const [progress, setProgress] = useState<UploadProgress>({ state: "idle" });
   const [loadingPercent, setLoadingPercent] = useState(0);
+  const [isNavigating, setIsNavigating] = useState(false);
   const timerRef = useRef<number | null>(null);
   const loadingSteps = ["Unpacking ZIP", "Parsing messages", "Building insights workspace"];
   const activeStepIndex = loadingPercent < 34 ? 0 : loadingPercent < 68 ? 1 : 2;
+  const isDropzoneBusy = progress.state === "loading" || progress.state === "parsed" || isNavigating;
+  const dropzoneLoadingMessage = progress.state === "parsed" ? "Opening insights workspace..." : progress.message;
+  const dropzoneLoadingPercent = progress.state === "parsed" ? 100 : loadingPercent;
+  const dropzoneStepIndex = progress.state === "parsed" ? loadingSteps.length - 1 : activeStepIndex;
 
   function clearTimer(): void {
     if (timerRef.current !== null) {
@@ -39,6 +44,21 @@ export function UploadScreen() {
   useEffect(() => {
     return () => clearTimer();
   }, []);
+
+  function beginInsightsTransition(): void {
+    setIsNavigating(true);
+    const viewTransition = (document as Document & { startViewTransition?: (callback: () => void) => unknown }).startViewTransition?.(() => {
+      router.push("/insights");
+    });
+
+    if (viewTransition) {
+      return;
+    }
+
+    window.setTimeout(() => {
+      router.push("/insights");
+    }, 720);
+  }
 
   async function handleUpload(file: File): Promise<void> {
     clearTimer();
@@ -63,8 +83,8 @@ export function UploadScreen() {
       setLoadingPercent(100);
       setResult(parsed);
       setProgress({ state: "parsed", message: `Ready. Parsed ${parsed.parseStats.totalMessages} messages.` });
-      await delay(260);
-      router.push("/insights");
+      await delay(220);
+      beginInsightsTransition();
     } catch (error) {
       clearTimer();
       const reason = toUserFriendlyUploadError(error);
@@ -90,8 +110,8 @@ export function UploadScreen() {
     setLoadingPercent(100);
     setResult(buildSampleParseResult());
     setProgress({ state: "parsed", message: "Sample insights loaded." });
-    await delay(240);
-    router.push("/insights");
+    await delay(200);
+    beginInsightsTransition();
   }
 
   return (
@@ -111,7 +131,7 @@ export function UploadScreen() {
             Explore with clarity.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-            Your ZIP is processed locally on this device and then opened in a focused insights workspace.
+            We process your file locally first, then prepare it for analysis.
           </p>
         </div>
       </section>
@@ -119,42 +139,15 @@ export function UploadScreen() {
       <section className="section-reveal grid items-stretch gap-4 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)]" style={{ animationDelay: "95ms" }}>
         <div className="space-y-4">
           <UploadDropzone
-            isLoading={progress.state === "loading"}
+            isLoading={isDropzoneBusy}
             onFileSelect={handleUpload}
             onValidationError={(message) => setProgress({ state: "error", message })}
-            className={progress.state === "loading" ? undefined : "h-full"}
+            className="h-full"
+            loadingMessage={dropzoneLoadingMessage}
+            loadingPercent={dropzoneLoadingPercent}
+            loadingSteps={loadingSteps}
+            activeStepIndex={dropzoneStepIndex}
           />
-
-          {progress.state === "loading" && (
-            <Card>
-              <CardContent className="space-y-4 py-5" aria-live="polite">
-                <div className="flex items-center justify-between gap-3 text-sm">
-                  <p className="font-medium text-foreground">{progress.message}</p>
-                  <span className="tabular-nums text-muted-foreground">{Math.round(loadingPercent)}%</span>
-                </div>
-                <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
-                  <div
-                    className="h-full rounded-full bg-accent transition-[width] duration-100"
-                    style={{ width: `${loadingPercent}%` }}
-                    role="progressbar"
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-valuenow={Math.round(loadingPercent)}
-                    aria-label="Preparing insights workspace"
-                  />
-                </div>
-                <ul className="space-y-1.5 text-xs text-muted-foreground">
-                  {loadingSteps.map((step, index) => (
-                    <li key={step} className="flex items-center gap-2">
-                      <CheckCircle2 className={`h-3.5 w-3.5 ${index <= activeStepIndex ? "text-accent" : "text-muted-foreground/55"}`} />
-                      <span className={index <= activeStepIndex ? "text-foreground" : ""}>{step}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-xs text-muted-foreground">Preparing your insights workspace. This usually completes in a few seconds.</p>
-              </CardContent>
-            </Card>
-          )}
 
           {progress.state === "error" && (
             <Card className="subtle-enter border-warning/70">
@@ -219,6 +212,17 @@ export function UploadScreen() {
           </div>
         </div>
       </section>
+
+      {isNavigating && (
+        <div className="route-transition-overlay fixed inset-0 z-[90] pointer-events-none">
+          <div className="route-transition-glow route-transition-glow-a" />
+          <div className="route-transition-glow route-transition-glow-b" />
+          <div className="route-transition-center apple-shell mx-auto mt-[32vh] w-[min(560px,88vw)] rounded-2xl border border-border/65 px-5 py-4 text-center shadow-soft">
+            <p className="text-xs font-semibold uppercase tracking-[0.09em] text-muted-foreground">Opening workspace</p>
+            <p className="mt-1 text-sm text-foreground">Preparing your insights canvas...</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

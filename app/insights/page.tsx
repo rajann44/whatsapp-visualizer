@@ -23,7 +23,7 @@ export default function InsightsPage() {
   }
 
   return (
-    <main>
+    <main className="insights-page-bg min-h-screen">
       <AppHeader />
       <div className="container workspace-enter py-6 md:py-8">
         <AnalyticsWorkspace showUploader={false} />

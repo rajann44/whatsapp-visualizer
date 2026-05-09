@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360" role="img" aria-label="Dense WhatsApp-style doodle pattern">
+  <rect width="360" height="360" fill="#f4efe8"/>
+  <defs>
+    <g id="wa-bubble" fill="none" stroke="#c7beb2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 9a7 7 0 0 1 7-7h8a7 7 0 0 1 7 7v5a7 7 0 0 1-7 7h-5l-4 4v-4h-1a7 7 0 0 1-7-7z"/>
+      <path d="M9 9c.8 3.2 3.2 5.6 6.4 6.4"/>
+      <path d="M15 14l1.4-1.4"/>
+    </g>
+    <g id="wa-double-check" fill="none" stroke="#c7beb2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 8l3 3 5-6"/>
+      <path d="M9 8l3 3 5-6"/>
+    </g>
+    <g id="wa-phone" fill="none" stroke="#c7beb2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="1" width="14" height="24" rx="3"/>
+      <path d="M9 5h6"/>
+      <circle cx="12" cy="21" r="1.2"/>
+    </g>
+    <g id="wa-camera" fill="none" stroke="#c7beb2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="5" width="22" height="14" rx="3"/>
+      <circle cx="13" cy="12" r="4"/>
+      <path d="M6 5l2-3h5l2 3"/>
+    </g>
+    <g id="wa-mic" fill="none" stroke="#c7beb2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="8" y="2" width="8" height="13" rx="4"/>
+      <path d="M4 10a8 8 0 0 0 16 0"/>
+      <path d="M12 18v5"/>
+      <path d="M9 23h6"/>
+    </g>
+    <g id="wa-pin" fill="none" stroke="#c7beb2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2a8 8 0 0 1 8 8c0 6-8 14-8 14S4 16 4 10a8 8 0 0 1 8-8z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </g>
+    <g id="wa-image" fill="none" stroke="#c7beb2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="3" width="22" height="18" rx="3"/>
+      <circle cx="9" cy="9" r="2"/>
+      <path d="M5 18l6-6 4 4 4-3 3 5"/>
+    </g>
+    <g id="wa-clock" fill="none" stroke="#c7beb2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 7v6l4 2"/>
+    </g>
+    <g id="wa-paperclip" fill="none" stroke="#c7beb2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 10l8-8a6 6 0 1 1 8 8l-10 10a4 4 0 0 1-6-6l9-9"/>
+    </g>
+    <g id="wa-emoji" fill="none" stroke="#c7beb2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M8 10h.1M16 10h.1"/>
+      <path d="M8 16c1.8 2 6.2 2 8 0"/>
+    </g>
+    <g id="wa-star" fill="none" stroke="#c7beb2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 8.6l6.2-.9z"/>
+    </g>
+  </defs>
+
+  <g opacity="0.95">
+    <use href="#wa-bubble" x="8" y="8"/>
+    <use href="#wa-double-check" x="46" y="14"/>
+    <use href="#wa-phone" x="70" y="6"/>
+    <use href="#wa-emoji" x="96" y="6"/>
+    <use href="#wa-clock" x="126" y="10"/>
+    <use href="#wa-image" x="152" y="8"/>
+    <use href="#wa-paperclip" x="184" y="10"/>
+    <use href="#wa-mic" x="210" y="10"/>
+    <use href="#wa-pin" x="234" y="6"/>
+    <use href="#wa-camera" x="262" y="10"/>
+    <use href="#wa-bubble" x="294" y="8"/>
+
+    <use href="#wa-star" x="16" y="42"/>
+    <use href="#wa-emoji" x="44" y="42"/>
+    <use href="#wa-bubble" x="72" y="42"/>
+    <use href="#wa-double-check" x="114" y="52"/>
+    <use href="#wa-phone" x="136" y="42"/>
+    <use href="#wa-image" x="162" y="42"/>
+    <use href="#wa-clock" x="194" y="44"/>
+    <use href="#wa-paperclip" x="220" y="46"/>
+    <use href="#wa-pin" x="246" y="42"/>
+    <use href="#wa-mic" x="274" y="44"/>
+    <use href="#wa-camera" x="298" y="44"/>
+
+    <use href="#wa-bubble" x="8" y="78"/>
+    <use href="#wa-double-check" x="46" y="84"/>
+    <use href="#wa-phone" x="70" y="78"/>
+    <use href="#wa-emoji" x="96" y="78"/>
+    <use href="#wa-clock" x="126" y="82"/>
+    <use href="#wa-image" x="152" y="80"/>
+    <use href="#wa-paperclip" x="184" y="82"/>
+    <use href="#wa-mic" x="210" y="82"/>
+    <use href="#wa-pin" x="234" y="78"/>
+    <use href="#wa-camera" x="262" y="82"/>
+    <use href="#wa-bubble" x="294" y="78"/>
+
+    <use href="#wa-star" x="16" y="114"/>
+    <use href="#wa-emoji" x="44" y="114"/>
+    <use href="#wa-bubble" x="72" y="114"/>
+    <use href="#wa-double-check" x="114" y="124"/>
+    <use href="#wa-phone" x="136" y="114"/>
+    <use href="#wa-image" x="162" y="114"/>
+    <use href="#wa-clock" x="194" y="116"/>
+    <use href="#wa-paperclip" x="220" y="118"/>
+    <use href="#wa-pin" x="246" y="114"/>
+    <use href="#wa-mic" x="274" y="116"/>
+    <use href="#wa-camera" x="298" y="116"/>
+
+    <use href="#wa-bubble" x="8" y="150"/>
+    <use href="#wa-double-check" x="46" y="156"/>
+    <use href="#wa-phone" x="70" y="150"/>
+    <use href="#wa-emoji" x="96" y="150"/>
+    <use href="#wa-clock" x="126" y="154"/>
+    <use href="#wa-image" x="152" y="152"/>
+    <use href="#wa-paperclip" x="184" y="154"/>
+    <use href="#wa-mic" x="210" y="154"/>
+    <use href="#wa-pin" x="234" y="150"/>
+    <use href="#wa-camera" x="262" y="154"/>
+    <use href="#wa-bubble" x="294" y="150"/>
+
+    <use href="#wa-star" x="16" y="186"/>
+    <use href="#wa-emoji" x="44" y="186"/>
+    <use href="#wa-bubble" x="72" y="186"/>
+    <use href="#wa-double-check" x="114" y="196"/>
+    <use href="#wa-phone" x="136" y="186"/>
+    <use href="#wa-image" x="162" y="186"/>
+    <use href="#wa-clock" x="194" y="188"/>
+    <use href="#wa-paperclip" x="220" y="190"/>
+    <use href="#wa-pin" x="246" y="186"/>
+    <use href="#wa-mic" x="274" y="188"/>
+    <use href="#wa-camera" x="298" y="188"/>
+
+    <use href="#wa-bubble" x="8" y="222"/>
+    <use href="#wa-double-check" x="46" y="228"/>
+    <use href="#wa-phone" x="70" y="222"/>
+    <use href="#wa-emoji" x="96" y="222"/>
+    <use href="#wa-clock" x="126" y="226"/>
+    <use href="#wa-image" x="152" y="224"/>
+    <use href="#wa-paperclip" x="184" y="226"/>
+    <use href="#wa-mic" x="210" y="226"/>
+    <use href="#wa-pin" x="234" y="222"/>
+    <use href="#wa-camera" x="262" y="226"/>
+    <use href="#wa-bubble" x="294" y="222"/>
+
+    <use href="#wa-star" x="16" y="258"/>
+    <use href="#wa-emoji" x="44" y="258"/>
+    <use href="#wa-bubble" x="72" y="258"/>
+    <use href="#wa-double-check" x="114" y="268"/>
+    <use href="#wa-phone" x="136" y="258"/>
+    <use href="#wa-image" x="162" y="258"/>
+    <use href="#wa-clock" x="194" y="260"/>
+    <use href="#wa-paperclip" x="220" y="262"/>
+    <use href="#wa-pin" x="246" y="258"/>
+    <use href="#wa-mic" x="274" y="260"/>
+    <use href="#wa-camera" x="298" y="260"/>
+
+    <use href="#wa-bubble" x="8" y="294"/>
+    <use href="#wa-double-check" x="46" y="300"/>
+    <use href="#wa-phone" x="70" y="294"/>
+    <use href="#wa-emoji" x="96" y="294"/>
+    <use href="#wa-clock" x="126" y="298"/>
+    <use href="#wa-image" x="152" y="296"/>
+    <use href="#wa-paperclip" x="184" y="298"/>
+    <use href="#wa-mic" x="210" y="298"/>
+    <use href="#wa-pin" x="234" y="294"/>
+    <use href="#wa-camera" x="262" y="298"/>
+    <use href="#wa-bubble" x="294" y="294"/>
+  </g>
+
+  <g fill="#c7beb2" opacity="0.88">
+    <circle cx="12" cy="12" r="1.3"/><circle cx="30" cy="22" r="1.2"/><circle cx="48" cy="12" r="1.2"/>
+    <circle cx="66" cy="24" r="1.2"/><circle cx="84" cy="14" r="1.2"/><circle cx="102" cy="24" r="1.3"/>
+    <circle cx="120" cy="14" r="1.2"/><circle cx="138" cy="24" r="1.2"/><circle cx="156" cy="14" r="1.2"/>
+    <circle cx="174" cy="24" r="1.3"/><circle cx="192" cy="14" r="1.2"/><circle cx="210" cy="24" r="1.2"/>
+    <circle cx="228" cy="14" r="1.2"/><circle cx="246" cy="24" r="1.3"/><circle cx="264" cy="14" r="1.2"/>
+    <circle cx="282" cy="24" r="1.2"/><circle cx="300" cy="14" r="1.2"/><circle cx="318" cy="24" r="1.3"/>
+    <circle cx="336" cy="14" r="1.2"/>
+
+    <circle cx="24" cy="348" r="1.2"/><circle cx="52" cy="338" r="1.2"/><circle cx="80" cy="348" r="1.3"/>
+    <circle cx="108" cy="338" r="1.2"/><circle cx="136" cy="348" r="1.2"/><circle cx="164" cy="338" r="1.3"/>
+    <circle cx="192" cy="348" r="1.2"/><circle cx="220" cy="338" r="1.2"/><circle cx="248" cy="348" r="1.3"/>
+    <circle cx="276" cy="338" r="1.2"/><circle cx="304" cy="348" r="1.2"/><circle cx="332" cy="338" r="1.3"/>
+  </g>
+</svg>

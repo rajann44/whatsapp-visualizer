@@ -55,6 +55,22 @@ body {
   background-image: radial-gradient(1100px 400px at 50% -12%, hsl(218 58% 22% / 0.33), transparent 72%);
 }
 
+.insights-page-bg {
+  background-image:
+    linear-gradient(hsl(var(--background) / 0.82), hsl(var(--background) / 0.82)),
+    url("/insights-doodle-bg.svg");
+  background-size: auto, 330px 330px;
+  background-attachment: scroll, fixed;
+  background-repeat: repeat;
+}
+
+.dark .insights-page-bg {
+  background-image:
+    linear-gradient(hsl(var(--background) / 0.88), hsl(var(--background) / 0.88)),
+    url("/insights-doodle-bg.svg");
+  background-size: auto, 330px 330px;
+}
+
 h1,
 h2,
 h3 {
@@ -130,6 +146,41 @@ h3 {
 }
 
 
+.route-transition-overlay {
+  background: radial-gradient(1000px 420px at 50% 0%, hsl(146 64% 52% / 0.12), hsl(var(--background) / 0.86));
+  animation: route-overlay-enter 700ms cubic-bezier(0.22, 0.8, 0.24, 1) forwards;
+}
+
+.route-transition-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(18px);
+  opacity: 0.72;
+}
+
+.route-transition-glow-a {
+  width: 360px;
+  height: 360px;
+  left: 12%;
+  top: 14%;
+  background: radial-gradient(circle at 40% 40%, hsl(146 72% 46% / 0.46), transparent 70%);
+  animation: route-glow-float-a 760ms ease-out forwards;
+}
+
+.route-transition-glow-b {
+  width: 300px;
+  height: 300px;
+  right: 14%;
+  bottom: 18%;
+  background: radial-gradient(circle at 42% 42%, hsl(154 64% 40% / 0.38), transparent 72%);
+  animation: route-glow-float-b 760ms ease-out forwards;
+}
+
+.route-transition-center {
+  animation: route-card-pop 680ms cubic-bezier(0.22, 0.8, 0.24, 1) forwards;
+}
+
+
 @keyframes workspace-enter {
   from {
     opacity: 0;
@@ -191,13 +242,60 @@ h3 {
 }
 
 
+@keyframes route-overlay-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes route-glow-float-a {
+  from {
+    transform: translate3d(-12px, 20px, 0) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.75;
+  }
+}
+
+@keyframes route-glow-float-b {
+  from {
+    transform: translate3d(16px, 18px, 0) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.65;
+  }
+}
+
+@keyframes route-card-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   .workspace-enter,
   .subtle-enter,
   .section-reveal,
   .hero-ambient-orb-a,
   .hero-ambient-orb-b,
-  .hero-ambient-grid {
+  .hero-ambient-grid,
+  .route-transition-overlay,
+  .route-transition-glow-a,
+  .route-transition-glow-b,
+  .route-transition-center {
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
   }
@@ -209,4 +307,42 @@ h3 {
 
 ::selection {
   background-color: hsl(var(--accent) / 0.24);
+}
+
+@supports (view-transition-name: none) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 340ms;
+    animation-timing-function: cubic-bezier(0.22, 0.8, 0.24, 1);
+  }
+
+  ::view-transition-old(root) {
+    animation-name: route-old-fade;
+  }
+
+  ::view-transition-new(root) {
+    animation-name: route-new-rise;
+  }
+}
+
+@keyframes route-old-fade {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.01);
+  }
+}
+
+@keyframes route-new-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
