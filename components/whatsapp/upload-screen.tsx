@@ -131,7 +131,7 @@ export function UploadScreen() {
             Explore with clarity.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-            We process your file locally first, then prepare it for analysis.
+            Purpose-built environment to understand, analyze, and visualize patterns in your messaging history.
           </p>
         </div>
       </section>
