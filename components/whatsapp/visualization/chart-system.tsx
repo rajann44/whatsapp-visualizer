@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
+import { Expand, X } from "lucide-react";
 import { Area, AreaChart, Bar, BarChart, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -14,6 +15,7 @@ interface ChartCardProps {
   children: ReactNode;
   className?: string;
   ariaLabel?: string;
+  expandable?: boolean;
 }
 
 export function ChartTitle({ children }: { children: ReactNode }) {
@@ -24,18 +26,79 @@ export function ChartSubtitle({ children }: { children: ReactNode }) {
   return <p className="text-[0.84rem] text-muted-foreground">{children}</p>;
 }
 
-export function ChartCard({ title, subtitle, footer, children, className, ariaLabel }: ChartCardProps) {
+export function ChartCard({ title, subtitle, footer, children, className, ariaLabel, expandable = true }: ChartCardProps) {
+  const [isExpanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    if (!isExpanded) {
+      return;
+    }
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setExpanded(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isExpanded]);
+
   return (
-    <Card className={`motion-fast subtle-enter hover:-translate-y-[1px] ${className ?? ""}`} aria-label={ariaLabel}>
-      <CardHeader className="space-y-1 pb-3">
-        <ChartTitle>{title}</ChartTitle>
-        {subtitle && <ChartSubtitle>{subtitle}</ChartSubtitle>}
-      </CardHeader>
-      <CardContent>
-        {children}
-        {footer && <p className="mt-3 text-xs text-muted-foreground">{footer}</p>}
-      </CardContent>
-    </Card>
+    <>
+      <Card className={`motion-fast subtle-enter hover:-translate-y-[1px] ${className ?? ""}`} aria-label={ariaLabel}>
+        <CardHeader className="pb-3">
+          <div className="flex items-start justify-between gap-3">
+            <div className="space-y-1">
+              <ChartTitle>{title}</ChartTitle>
+              {subtitle && <ChartSubtitle>{subtitle}</ChartSubtitle>}
+            </div>
+            {expandable && (
+              <button
+                type="button"
+                onClick={() => setExpanded(true)}
+                className="motion-fast rounded-full border border-border/70 bg-card/70 p-1.5 text-muted-foreground hover:text-foreground"
+                aria-label={`Expand ${title} chart`}
+              >
+                <Expand className="h-3.5 w-3.5" />
+              </button>
+            )}
+          </div>
+        </CardHeader>
+        <CardContent>
+          {children}
+          {footer && <p className="mt-3 text-xs text-muted-foreground">{footer}</p>}
+        </CardContent>
+      </Card>
+
+      {isExpanded && (
+        <div className="fixed inset-0 z-50 p-4 md:p-8">
+          <button
+            className="absolute inset-0 bg-background/60 backdrop-blur-sm"
+            onClick={() => setExpanded(false)}
+            aria-label="Close expanded chart"
+          />
+          <div className="apple-shell subtle-enter relative mx-auto flex h-full w-full max-w-6xl flex-col rounded-2xl border border-border/70 shadow-soft md:h-auto md:max-h-[92vh]">
+            <div className="flex items-start justify-between gap-3 border-b border-border/60 px-5 py-4">
+              <div>
+                <ChartTitle>{title}</ChartTitle>
+                {subtitle && <ChartSubtitle>{subtitle}</ChartSubtitle>}
+              </div>
+              <button
+                type="button"
+                onClick={() => setExpanded(false)}
+                className="motion-fast rounded-full border border-border/70 bg-card/70 p-1.5 text-muted-foreground hover:text-foreground"
+                aria-label="Close expanded chart"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="min-h-0 flex-1 overflow-auto px-5 py-4 [&_.h-72]:h-[min(62vh,760px)] [&_.h-64]:h-[min(58vh,700px)] [&_.h-40]:h-[min(52vh,620px)]">
+              {children}
+              {footer && <p className="mt-3 text-xs text-muted-foreground">{footer}</p>}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
