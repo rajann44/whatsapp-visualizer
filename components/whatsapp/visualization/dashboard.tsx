@@ -60,9 +60,16 @@ export function VisualizationDashboard({ analytics, filteredMessages, activeSect
     <div className="space-y-12">
       <section className={`${activeSection === "overview" ? "space-y-4" : "hidden"}`}>
         <SectionHeader eyebrow="Overview" title="Top-level metrics" description="A fast snapshot of message volume, participation, and responsiveness." />
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2">
           {view.overview.map((metric) => (
-            <MetricSummaryCard key={metric.label} label={metric.label} value={metric.value} context={metric.insight} trend={metric.trend} />
+            <MetricSummaryCard
+              key={metric.label}
+              label={metric.label}
+              value={metric.value}
+              context={metric.insight}
+              trend={metric.trend}
+              className="min-h-[180px]"
+            />
           ))}
         </div>
       </section>

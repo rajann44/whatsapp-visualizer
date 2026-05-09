@@ -112,16 +112,17 @@ interface MetricSummaryCardProps {
   value: string;
   context?: string;
   trend?: Array<{ x: string; y: number }>;
+  className?: string;
 }
 
-export function MetricSummaryCard({ label, value, context, trend }: MetricSummaryCardProps) {
+export function MetricSummaryCard({ label, value, context, trend, className }: MetricSummaryCardProps) {
   return (
-    <Card className="motion-fast subtle-enter hover:-translate-y-[1px]">
+    <Card className={`motion-fast subtle-enter hover:-translate-y-[1px] ${className ?? ""}`}>
       <CardHeader className="pb-2">
         <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">{label}</p>
       </CardHeader>
       <CardContent>
-        <p className="text-3xl font-semibold tabular-nums tracking-tight">{value}</p>
+        <p className="text-[2.2rem] font-semibold tabular-nums leading-none tracking-tight">{value}</p>
         {context && <p className="mt-1 text-sm text-muted-foreground">{context}</p>}
         {trend && <div className="mt-3"><Sparkline data={trend} /></div>}
       </CardContent>
