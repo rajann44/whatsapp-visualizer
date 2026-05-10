@@ -9,6 +9,7 @@ export function SiteFooter() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p>Local-first analytics. Your chat data stays on this device.</p>
           <div className="flex flex-wrap items-center gap-3">
+            <Link href="/guides" className="hover:text-foreground">Guides</Link>
             <Link href="/privacy" className="hover:text-foreground">Privacy</Link>
             <Link href="/terms" className="hover:text-foreground">Terms</Link>
             <Link href="/changelog" className="hover:text-foreground">Changelog</Link>

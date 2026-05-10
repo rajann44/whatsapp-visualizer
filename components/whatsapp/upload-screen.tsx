@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AlertCircle, BarChart3, Clock3, Download, Eye, ShieldCheck, SlidersHorizontal, Sparkles, Users2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -191,6 +192,14 @@ export function UploadScreen() {
                 <Button variant="secondary" className="mt-3 w-full" onClick={loadSampleWorkspace} disabled={progress.state === "loading"}>
                   Explore sample workspace
                 </Button>
+              </div>
+
+              <div className="rounded-xl border border-border/60 bg-muted/20 p-3">
+                <p className="text-sm font-medium text-foreground">Need a step-by-step guide?</p>
+                <p className="mt-1 text-sm text-muted-foreground">Read the walkthrough for export, upload, and interpreting charts accurately.</p>
+                <Link href="/guides" className="mt-3 inline-flex text-sm font-medium text-accent underline-offset-2 hover:underline">
+                  Browse all analysis guides
+                </Link>
               </div>
             </CardContent>
           </Card>

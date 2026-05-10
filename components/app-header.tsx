@@ -13,6 +13,7 @@ export function AppHeader() {
         </Link>
         <div className="flex items-center gap-3">
           <nav className="hidden items-center gap-3 text-xs text-muted-foreground md:flex">
+            <Link href="/guides" className="hover:text-foreground">Guides</Link>
             <Link href="/privacy" className="hover:text-foreground">Privacy</Link>
             <Link href="/terms" className="hover:text-foreground">Terms</Link>
             <Link href="/changelog" className="hover:text-foreground">Changelog</Link>
