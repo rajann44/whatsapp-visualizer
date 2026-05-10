@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     template: "%s | WhatsApp Visualizer"
   },
   description: "Analyze WhatsApp exports privately in your browser with deterministic, local-first insights.",
+  alternates: {
+    canonical: "/"
+  },
   openGraph: {
     title: "WhatsApp Visualizer",
     description: "Deterministic, local-first WhatsApp analytics in your browser.",

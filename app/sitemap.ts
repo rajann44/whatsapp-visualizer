@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return ["", "/insights", "/privacy", "/terms", "/changelog"].map((path) => ({
+  return ["", "/insights", "/privacy", "/terms", "/changelog", "/guides/whatsapp-chat-analysis-guide"].map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: new Date(),
     changeFrequency: "weekly",

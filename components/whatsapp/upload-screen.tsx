@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { AlertCircle, Eye, ShieldCheck, SlidersHorizontal } from "lucide-react";
+import { AlertCircle, BarChart3, Clock3, Download, Eye, ShieldCheck, SlidersHorizontal, Sparkles, Users2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { UploadDropzone } from "@/components/whatsapp/upload-dropzone";
@@ -131,7 +131,7 @@ export function UploadScreen() {
             Explore with clarity.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-            Purpose-built environment to understand, analyze, and visualize patterns in your messaging history.
+            Purpose-built environment to visualize activity trends, response behavior, participant balance, and exportable summaries from your chat history.
           </p>
         </div>
       </section>
@@ -197,7 +197,67 @@ export function UploadScreen() {
         </aside>
       </section>
 
+      <section className="section-reveal apple-shell rounded-[1.4rem] border border-border/60 bg-card/70 p-4 md:p-5" style={{ animationDelay: "115ms" }}>
+        <div className="mb-3 flex items-end justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.09em] text-muted-foreground">What you can do</p>
+            <h2 className="text-lg font-semibold tracking-tight text-foreground">Feature overview before upload</h2>
+          </div>
+          <p className="hidden text-xs text-muted-foreground md:block">No account required</p>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
+              <BarChart3 className="h-4 w-4 text-accent" />
+              Activity trends
+            </div>
+            <p className="text-sm text-muted-foreground">See daily and hourly message intensity, quiet periods, and momentum over time.</p>
+          </div>
+          <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
+              <Clock3 className="h-4 w-4 text-accent" />
+              Response behavior
+            </div>
+            <p className="text-sm text-muted-foreground">Measure reply delays, back-and-forth rhythm, and responsiveness between participants.</p>
+          </div>
+          <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
+              <Users2 className="h-4 w-4 text-accent" />
+              Participant balance
+            </div>
+            <p className="text-sm text-muted-foreground">Compare contribution share, initiator patterns, and conversation ownership.</p>
+          </div>
+          <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
+              <Sparkles className="h-4 w-4 text-accent" />
+              Advanced insights
+            </div>
+            <p className="text-sm text-muted-foreground">Review deterministic higher-level signals and notable conversational shifts.</p>
+          </div>
+          <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
+              <SlidersHorizontal className="h-4 w-4 text-accent" />
+              Deep filtering
+            </div>
+            <p className="text-sm text-muted-foreground">Slice by participant, date range, weekday, and content type for focused analysis.</p>
+          </div>
+          <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
+              <Download className="h-4 w-4 text-accent" />
+              Export summaries
+            </div>
+            <p className="text-sm text-muted-foreground">Generate sharable outputs and keep a portable snapshot of your selected insights.</p>
+          </div>
+        </div>
+      </section>
+
       <section className="section-reveal apple-shell rounded-[1.4rem] border border-border/60 bg-card/70 p-4 md:p-5" style={{ animationDelay: "130ms" }}>
+        <div className="mb-3 flex items-end justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.09em] text-muted-foreground">Trust and transparency</p>
+            <h2 className="text-lg font-semibold tracking-tight text-foreground">Built with privacy-first principles</h2>
+          </div>
+        </div>
         <div className="grid gap-3 md:grid-cols-3">
           <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
             <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
