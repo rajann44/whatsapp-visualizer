@@ -95,6 +95,13 @@ h3 {
   animation-fill-mode: both;
 }
 
+.how-step {
+  opacity: 0;
+  transform: translateY(4px);
+  animation: how-step-enter 320ms cubic-bezier(0.22, 0.8, 0.24, 1) forwards;
+  animation-delay: var(--step-delay, 0ms);
+}
+
 .motion-fast {
   transition: opacity 180ms ease, transform 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }
@@ -215,6 +222,17 @@ h3 {
   }
 }
 
+@keyframes how-step-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes hero-orb-float-a {
   from {
     transform: translate3d(0, 0, 0);
@@ -290,6 +308,7 @@ h3 {
   .workspace-enter,
   .subtle-enter,
   .section-reveal,
+  .how-step,
   .hero-ambient-orb-a,
   .hero-ambient-orb-b,
   .hero-ambient-grid,

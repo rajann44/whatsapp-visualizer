@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AlertCircle, BarChart3, Clock3, Download, Eye, ShieldCheck, SlidersHorizontal, Sparkles, Users2 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 
 import { UploadDropzone } from "@/components/whatsapp/upload-dropzone";
 import { Badge } from "@/components/ui/badge";
@@ -127,12 +127,12 @@ export function UploadScreen() {
             Private on-device analysis
           </Badge>
           <h1 className="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">
-            Bring in your chat.
+            Upload a WhatsApp export ZIP.
             <br className="hidden md:block" />
-            Explore with clarity.
+            Get clear conversation insights.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-            Purpose-built environment to visualize activity trends, response behavior, participant balance, and exportable summaries from your chat history.
+            See message trends, reply speed, participant contribution, and content patterns. Filter by person and date, then export your summary.
           </p>
         </div>
       </section>
@@ -163,8 +163,8 @@ export function UploadScreen() {
         <aside>
           <Card className="h-full rounded-[1.4rem] border-border/60 bg-card/70">
             <CardHeader className="space-y-1 pb-2">
-              <CardTitle className="text-base">Quick start</CardTitle>
-              <p className="text-sm text-muted-foreground">Everything you need before upload and analysis.</p>
+              <CardTitle className="text-base">How it works</CardTitle>
+              <p className="text-sm text-muted-foreground">Export ZIP, upload once, review insights in the workspace.</p>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
@@ -180,9 +180,15 @@ export function UploadScreen() {
                   </a>
                 </div>
                 <ol className="mt-2 space-y-2 text-sm text-muted-foreground">
-                  <li className="rounded-lg border border-border/60 bg-muted/25 px-3 py-2">1. Open a chat, then tap the header menu.</li>
-                  <li className="rounded-lg border border-border/60 bg-muted/25 px-3 py-2">2. Choose <span className="font-medium text-foreground">Export chat</span>.</li>
-                  <li className="rounded-lg border border-border/60 bg-muted/25 px-3 py-2">3. Save the ZIP and drop it here.</li>
+                  <li className="how-step rounded-lg border border-border/60 bg-muted/25 px-3 py-2" style={{ "--step-delay": "0ms" } as CSSProperties}>
+                    1. Open a chat, then tap the header menu.
+                  </li>
+                  <li className="how-step rounded-lg border border-border/60 bg-muted/25 px-3 py-2" style={{ "--step-delay": "90ms" } as CSSProperties}>
+                    2. Choose <span className="font-medium text-foreground">Export chat</span>.
+                  </li>
+                  <li className="how-step rounded-lg border border-border/60 bg-muted/25 px-3 py-2" style={{ "--step-delay": "180ms" } as CSSProperties}>
+                    3. Save the ZIP and drop it here.
+                  </li>
                 </ol>
               </div>
 
@@ -210,7 +216,7 @@ export function UploadScreen() {
         <div className="mb-3 flex items-end justify-between gap-3">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.09em] text-muted-foreground">What you can do</p>
-            <h2 className="text-lg font-semibold tracking-tight text-foreground">Feature overview before upload</h2>
+            <h2 className="text-lg font-semibold tracking-tight text-foreground">What you will see after upload</h2>
           </div>
           <p className="hidden text-xs text-muted-foreground md:block">No account required</p>
         </div>
@@ -220,42 +226,42 @@ export function UploadScreen() {
               <BarChart3 className="h-4 w-4 text-accent" />
               Activity trends
             </div>
-            <p className="text-sm text-muted-foreground">See daily and hourly message intensity, quiet periods, and momentum over time.</p>
+            <p className="text-sm text-muted-foreground">See when conversation activity is highest by day, hour, and month.</p>
           </div>
           <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
             <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
               <Clock3 className="h-4 w-4 text-accent" />
               Response behavior
             </div>
-            <p className="text-sm text-muted-foreground">Measure reply delays, back-and-forth rhythm, and responsiveness between participants.</p>
+            <p className="text-sm text-muted-foreground">Measure how quickly people reply and how consistent response rhythm is.</p>
           </div>
           <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
             <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
               <Users2 className="h-4 w-4 text-accent" />
               Participant balance
             </div>
-            <p className="text-sm text-muted-foreground">Compare contribution share, initiator patterns, and conversation ownership.</p>
+            <p className="text-sm text-muted-foreground">Compare who contributes most and how message share shifts over time.</p>
           </div>
           <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
             <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
               <Sparkles className="h-4 w-4 text-accent" />
               Advanced insights
             </div>
-            <p className="text-sm text-muted-foreground">Review deterministic higher-level signals and notable conversational shifts.</p>
+            <p className="text-sm text-muted-foreground">Review notable pattern changes using deterministic, explainable signals.</p>
           </div>
           <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
             <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
               <SlidersHorizontal className="h-4 w-4 text-accent" />
               Deep filtering
             </div>
-            <p className="text-sm text-muted-foreground">Slice by participant, date range, weekday, and content type for focused analysis.</p>
+            <p className="text-sm text-muted-foreground">Filter by participant, date range, weekday, and content type for focused analysis.</p>
           </div>
           <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
             <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
               <Download className="h-4 w-4 text-accent" />
               Export summaries
             </div>
-            <p className="text-sm text-muted-foreground">Generate sharable outputs and keep a portable snapshot of your selected insights.</p>
+            <p className="text-sm text-muted-foreground">Export a portable summary of the exact insights and filters you selected.</p>
           </div>
         </div>
       </section>
