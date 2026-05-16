@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">WhatsApp Visualizer</string>
+    <string name="title_activity_main">WhatsApp Visualizer</string>
+    <string name="package_name">com.whatsappvisualizer.app</string>
+    <string name="custom_url_scheme">com.whatsappvisualizer.app</string>
+</resources>

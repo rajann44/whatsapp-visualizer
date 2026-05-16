@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Analytics } from "@vercel/analytics/react";
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { NativeBackButtonBridge } from "@/components/native-back-button-bridge";
+import { NativePlatformClass } from "@/components/native-platform-class";
 import { WorkspaceProvider } from "@/components/whatsapp/workspace-provider";
 import { SITE_URL } from "@/lib/site-config";
 
@@ -49,10 +50,11 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+        <NativePlatformClass />
+        <NativeBackButtonBridge />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <WorkspaceProvider>{children}</WorkspaceProvider>
         </ThemeProvider>
-        <Analytics />
       </body>
     </html>
   );

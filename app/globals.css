@@ -329,6 +329,56 @@ h3 {
   background-color: hsl(var(--accent) / 0.24);
 }
 
+body.native-app {
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body.android-app {
+  padding-top: max(env(safe-area-inset-top), 10px);
+  padding-bottom: max(env(safe-area-inset-bottom), 12px);
+  background: linear-gradient(180deg, hsl(var(--background)), hsl(var(--background) / 0.98));
+}
+
+body.android-app header {
+  top: max(env(safe-area-inset-top), 0px);
+  position: sticky;
+  border-bottom-color: hsl(var(--border) / 0.35);
+  backdrop-filter: blur(14px);
+}
+
+body.android-app .container {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+body.android-app .workspace-enter {
+  animation-duration: 220ms;
+}
+
+body.android-app .apple-shell {
+  border-radius: 1.25rem;
+  border-color: hsl(var(--border) / 0.5);
+  box-shadow: 0 10px 30px -26px hsl(220 35% 15% / 0.45);
+}
+
+body.android-app [role="dialog"] {
+  border-radius: 1.15rem;
+}
+
+body.android-app .route-transition-overlay {
+  background: radial-gradient(820px 340px at 50% 0%, hsl(146 64% 52% / 0.1), hsl(var(--background) / 0.92));
+}
+
+body.android-app .route-transition-center {
+  margin-top: 26vh;
+}
+
+body.android-app button,
+body.android-app [role="button"] {
+  min-height: 44px;
+}
+
 @supports (view-transition-name: none) {
   ::view-transition-old(root),
   ::view-transition-new(root) {
