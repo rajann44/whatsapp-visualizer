@@ -225,46 +225,53 @@ export function UploadScreen() {
         </div>
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
-            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
-              <BarChart3 className="h-4 w-4 text-accent" />
-              Activity trends
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground"><BarChart3 className="h-4 w-4 text-accent" />Activity trends</div>
+            <div className="mb-2 grid h-11 grid-cols-6 items-end gap-1 rounded-lg border border-border/60 bg-background/60 px-2 py-1">
+              <span className="h-2 rounded bg-accent/40" /><span className="h-4 rounded bg-accent/45" /><span className="h-6 rounded bg-accent/55" /><span className="h-3 rounded bg-accent/45" /><span className="h-7 rounded bg-accent/60" /><span className="h-5 rounded bg-accent/50" />
             </div>
-            <p className="text-sm text-muted-foreground">See when conversation activity is highest by day, hour, and month.</p>
+            <p className="text-xs text-muted-foreground">Peak hours and active days</p>
           </div>
           <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
-            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
-              <Clock3 className="h-4 w-4 text-accent" />
-              Response behavior
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground"><Clock3 className="h-4 w-4 text-accent" />Response behavior</div>
+            <div className="mb-2 h-11 rounded-lg border border-border/60 bg-background/60 px-2 py-2">
+              <div className="h-1.5 w-[26%] rounded-full bg-accent/60" />
+              <div className="mt-1.5 h-1.5 w-[52%] rounded-full bg-accent/45" />
+              <div className="mt-1.5 h-1.5 w-[74%] rounded-full bg-accent/35" />
             </div>
-            <p className="text-sm text-muted-foreground">Measure how quickly people reply and how consistent response rhythm is.</p>
+            <p className="text-xs text-muted-foreground">Who replies faster</p>
           </div>
           <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
-            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
-              <Users2 className="h-4 w-4 text-accent" />
-              Participant balance
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground"><Users2 className="h-4 w-4 text-accent" />Participant balance</div>
+            <div className="mb-2 flex h-11 items-center gap-1 rounded-lg border border-border/60 bg-background/60 p-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-accent/80" /><span className="h-2.5 w-2.5 rounded-full bg-accent/55" /><span className="h-2.5 w-2.5 rounded-full bg-accent/35" />
+              <div className="ml-1 h-2 flex-1 rounded-full bg-accent/20"><div className="h-2 w-[58%] rounded-full bg-accent/60" /></div>
             </div>
-            <p className="text-sm text-muted-foreground">Compare who contributes most and how message share shifts over time.</p>
+            <p className="text-xs text-muted-foreground">Contribution share split</p>
           </div>
           <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
-            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
-              <Sparkles className="h-4 w-4 text-accent" />
-              Advanced insights
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground"><Sparkles className="h-4 w-4 text-accent" />Advanced insights</div>
+            <div className="mb-2 h-11 rounded-lg border border-border/60 bg-background/60 px-2 py-2">
+              <div className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-accent/70" /><span className="h-1.5 w-20 rounded-full bg-accent/55" /></div>
+              <div className="mt-2 flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-accent/55" /><span className="h-1.5 w-24 rounded-full bg-accent/40" /></div>
             </div>
-            <p className="text-sm text-muted-foreground">Review notable pattern changes using deterministic, explainable signals.</p>
+            <p className="text-xs text-muted-foreground">Pattern shift highlights</p>
           </div>
           <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
-            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
-              <SlidersHorizontal className="h-4 w-4 text-accent" />
-              Deep filtering
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground"><SlidersHorizontal className="h-4 w-4 text-accent" />Deep filtering</div>
+            <div className="mb-2 flex h-11 items-center gap-1.5 rounded-lg border border-border/60 bg-background/60 px-2 py-2">
+              <span className="rounded-full border border-border/70 bg-background px-2 py-0.5 text-[10px] text-foreground">Person</span>
+              <span className="rounded-full border border-border/70 bg-background px-2 py-0.5 text-[10px] text-foreground">Date</span>
+              <span className="rounded-full border border-border/70 bg-background px-2 py-0.5 text-[10px] text-foreground">Type</span>
             </div>
-            <p className="text-sm text-muted-foreground">Filter by participant, date range, weekday, and content type for focused analysis.</p>
+            <p className="text-xs text-muted-foreground">Focus on one slice</p>
           </div>
           <div className="rounded-xl border border-border/60 bg-muted/25 p-3">
-            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground">
-              <Download className="h-4 w-4 text-accent" />
-              Export summaries
+            <div className="mb-2 flex items-center gap-2 text-sm font-medium text-foreground"><Download className="h-4 w-4 text-accent" />Export summaries</div>
+            <div className="mb-2 flex h-11 items-center justify-between rounded-lg border border-border/60 bg-background/60 px-2 py-2">
+              <span className="text-[10px] text-muted-foreground">insights-summary.pdf</span>
+              <span className="rounded-full bg-accent/15 px-2 py-0.5 text-[10px] font-medium text-foreground">Export</span>
             </div>
-            <p className="text-sm text-muted-foreground">Export a portable summary of the exact insights and filters you selected.</p>
+            <p className="text-xs text-muted-foreground">Shareable output files</p>
           </div>
         </div>
       </section>
