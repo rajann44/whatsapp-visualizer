@@ -117,21 +117,21 @@ export function UploadScreen() {
 
   return (
     <div className="space-y-6">
-      <section className="apple-shell section-reveal relative overflow-hidden rounded-[2rem] border border-border/60 px-6 py-10 text-center shadow-soft md:px-12 md:py-16" style={{ animationDelay: "30ms" }}>
+      <section className="apple-shell section-reveal relative overflow-hidden rounded-[2rem] border border-border/60 px-6 py-5 text-center shadow-soft md:px-12 md:py-6" style={{ animationDelay: "30ms" }}>
         <div className="hero-ambient-orb hero-ambient-orb-a" aria-hidden="true" />
         <div className="hero-ambient-orb hero-ambient-orb-b" aria-hidden="true" />
         <div className="hero-ambient-grid" aria-hidden="true" />
         <div className="relative z-10">
-          <Badge variant="success" className="mx-auto mb-5 w-fit gap-1.5 px-3 py-1 text-[11px] uppercase tracking-[0.12em]">
+          <Badge variant="success" className="mx-auto mb-3 w-fit gap-1.5 px-3 py-1 text-[11px] uppercase tracking-[0.12em]">
             <ShieldCheck className="h-3.5 w-3.5" />
             Private on-device analysis
           </Badge>
-          <h1 className="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-6xl">
+          <h1 className="mx-auto max-w-4xl text-4xl font-semibold tracking-tight md:text-5xl">
             Upload a WhatsApp export ZIP.
             <br className="hidden md:block" />
             Get clear conversation insights.
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
+          <p className="mx-auto mt-3 max-w-2xl text-base text-muted-foreground md:text-lg">
             See message trends, reply speed, participant contribution, and content patterns. Filter by person and date, then export your summary.
           </p>
         </div>
@@ -162,48 +162,51 @@ export function UploadScreen() {
 
         <aside>
           <Card className="h-full rounded-[1.4rem] border-border/60 bg-card/70">
-            <CardHeader className="space-y-1 pb-2">
-              <CardTitle className="text-base">How it works</CardTitle>
-              <p className="text-sm text-muted-foreground">Export ZIP, upload once, review insights in the workspace.</p>
+            <CardHeader className="space-y-1 pb-1">
+              <CardTitle className="text-base">Get started</CardTitle>
+              <p className="text-sm text-muted-foreground">Upload in 3 steps.</p>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
+            <CardContent className="space-y-3">
+              <div className="rounded-xl border border-border/60 bg-muted/20 p-3">
                 <div className="flex items-center justify-between gap-2">
-                  <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">How to export on WhatsApp</p>
+                  <p className="text-sm font-semibold text-foreground">Export and upload</p>
                   <a
                     href="https://faq.whatsapp.com/1180414079177245/"
                     target="_blank"
                     rel="noreferrer"
                     className="text-xs font-medium text-accent underline-offset-2 hover:underline"
                   >
-                    Official guide
+                    WhatsApp guide
                   </a>
                 </div>
-                <ol className="mt-2 space-y-2 text-sm text-muted-foreground">
-                  <li className="how-step rounded-lg border border-border/60 bg-muted/25 px-3 py-2" style={{ "--step-delay": "0ms" } as CSSProperties}>
-                    1. Open a chat, then tap the header menu.
+                <ol className="mt-2 space-y-1.5">
+                  <li className="how-step flex items-center gap-2 rounded-lg border border-border/60 bg-background/60 px-2.5 py-2 text-sm text-foreground" style={{ "--step-delay": "0ms" } as CSSProperties}>
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-border/70 bg-background text-[11px] font-semibold">1</span>
+                    Open chat menu
                   </li>
-                  <li className="how-step rounded-lg border border-border/60 bg-muted/25 px-3 py-2" style={{ "--step-delay": "90ms" } as CSSProperties}>
-                    2. Choose <span className="font-medium text-foreground">Export chat</span>.
+                  <li className="how-step flex items-center gap-2 rounded-lg border border-border/60 bg-background/60 px-2.5 py-2 text-sm text-foreground" style={{ "--step-delay": "90ms" } as CSSProperties}>
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-border/70 bg-background text-[11px] font-semibold">2</span>
+                    Tap <span className="font-medium">Export chat</span>
                   </li>
-                  <li className="how-step rounded-lg border border-border/60 bg-muted/25 px-3 py-2" style={{ "--step-delay": "180ms" } as CSSProperties}>
-                    3. Save the ZIP and drop it here.
+                  <li className="how-step flex items-center gap-2 rounded-lg border border-border/60 bg-background/60 px-2.5 py-2 text-sm text-foreground" style={{ "--step-delay": "180ms" } as CSSProperties}>
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-border/70 bg-background text-[11px] font-semibold">3</span>
+                    Upload ZIP here
                   </li>
                 </ol>
               </div>
 
               <div className="rounded-xl border border-border/60 bg-muted/20 p-3">
                 <p className="text-sm font-medium text-foreground">Try the app before uploading</p>
-                <p className="mt-1 text-sm text-muted-foreground">Load an anonymized sample chat to explore charts, filters, and exports.</p>
-                <Button variant="secondary" className="mt-3 w-full" onClick={loadSampleWorkspace} disabled={progress.state === "loading"}>
+                <p className="mt-1 text-sm text-muted-foreground">Open sample data to preview charts and filters.</p>
+                <Button variant="secondary" className="mt-2 w-full" onClick={loadSampleWorkspace} disabled={progress.state === "loading"}>
                   Explore sample workspace
                 </Button>
               </div>
 
               <div className="rounded-xl border border-border/60 bg-muted/20 p-3">
                 <p className="text-sm font-medium text-foreground">Need a step-by-step guide?</p>
-                <p className="mt-1 text-sm text-muted-foreground">Read the walkthrough for export, upload, and interpreting charts accurately.</p>
-                <Link href="/guides" className="mt-3 inline-flex text-sm font-medium text-accent underline-offset-2 hover:underline">
+                <p className="mt-1 text-sm text-muted-foreground">Read the full walkthrough for analysis.</p>
+                <Link href="/guides" className="mt-2 inline-flex text-sm font-medium text-accent underline-offset-2 hover:underline">
                   Browse all analysis guides
                 </Link>
               </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, UploadCloud } from "lucide-react";
+import { CheckCircle2, ShieldCheck, UploadCloud } from "lucide-react";
 import { useId, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -55,7 +55,7 @@ export function UploadDropzone({
       }}
       className={cn(
         "apple-shell flex h-[18rem] cursor-pointer flex-col items-center justify-center gap-5 overflow-hidden rounded-[2rem] border border-dashed border-border/90 p-8 text-center transition-all duration-300",
-        dragging ? "scale-[1.01] border-accent bg-muted/80" : "hover:border-accent/60 hover:bg-muted/40",
+        dragging ? "scale-[1.01] border-accent bg-muted/80 ring-2 ring-accent/35" : "hover:border-accent/60 hover:bg-muted/40",
         isLoading && "pointer-events-none",
         className
       )}
@@ -91,34 +91,37 @@ export function UploadDropzone({
         </div>
       ) : (
         <>
-      <div className="rounded-full bg-accent/10 p-4 text-accent">
-        <UploadCloud className="h-8 w-8" />
-      </div>
-      <div>
-        <p className="text-xl font-semibold tracking-tight md:text-2xl">Drop your WhatsApp ZIP here</p>
-        <p className="mt-2 text-sm text-muted-foreground md:text-base">
-          Or click to browse. Your file is processed locally and never leaves this device.
-        </p>
-      </div>
-      <input
-        id={inputId}
-        type="file"
-        accept=".zip,application/zip"
-        disabled={isLoading}
-        className="sr-only"
-        onClick={(event) => {
-          event.currentTarget.value = "";
-        }}
-        onChange={(event) => handleFile(event.target.files?.[0])}
-        aria-label="Choose ZIP file"
-      />
-      <div className="inline-flex">
-        <Button variant="secondary" size="sm" type="button" disabled={isLoading} asChild>
-          <label htmlFor={inputId} className={isLoading ? "cursor-not-allowed" : "cursor-pointer"}>
-          {isLoading ? "Parsing..." : "Choose ZIP file"}
-          </label>
-        </Button>
-      </div>
+          <div className="rounded-full bg-accent/10 p-4 text-accent">
+            <UploadCloud className="h-8 w-8" />
+          </div>
+          <div>
+            <p className="text-xl font-semibold tracking-tight md:text-2xl">Upload export ZIP to open insights</p>
+            <p className="mt-1.5 text-sm text-muted-foreground">Choose file below or drag and drop.</p>
+            <p className="mt-1 text-xs text-muted-foreground">Supported: .zip from WhatsApp Export Chat</p>
+          </div>
+          <input
+            id={inputId}
+            type="file"
+            accept=".zip,application/zip"
+            disabled={isLoading}
+            className="sr-only"
+            onClick={(event) => {
+              event.currentTarget.value = "";
+            }}
+            onChange={(event) => handleFile(event.target.files?.[0])}
+            aria-label="Choose WhatsApp export ZIP"
+          />
+          <div className="w-full max-w-xs">
+            <Button variant="default" size="default" type="button" className="w-full" disabled={isLoading} asChild>
+              <label htmlFor={inputId} className={isLoading ? "cursor-not-allowed" : "cursor-pointer"}>
+                {isLoading ? "Parsing..." : "Choose WhatsApp ZIP"}
+              </label>
+            </Button>
+          </div>
+          <p className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+            <ShieldCheck className="h-3.5 w-3.5 text-accent" />
+            Processed on this device. Not uploaded.
+          </p>
         </>
       )}
     </div>

@@ -71,7 +71,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AppHeader />
 
-      <div className="container workspace-enter py-6 md:py-10">
+      <div className="container workspace-enter py-4">
         <UploadScreen />
       </div>
       <SiteFooter />
